@@ -7,9 +7,9 @@ class App < Sinatra::Base
     end
 
     post '/piglatinize' do
-        user_word = word_param["word"]
+        user_input = word_param["user_phrase"]
         @word = PigLatinizer.new
-        @pig_latinized_word = @word.piglatinize(user_word)
+        @pig_latinized_word = @word.piglatinize(user_input)
        
         erb :show
     end
@@ -17,7 +17,7 @@ class App < Sinatra::Base
     private 
 
     def word_param
-        allowed = ["word"]
+        allowed = ["user_phrase"]
         params.select{|key| allowed.include?(key)}
     end 
 
