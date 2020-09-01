@@ -1,35 +1,37 @@
 class PigLatinizer
 
-  def piglatinize(word)
-    alphabet = ("A".."z").to_a
-    vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
-    consonants = alphabet - vowels
-    unusable = ["i", "a", "an", "in", "on", "and"]
-    word.gsub!(/[^a-z0-9\s]/i, '')
-    word = word.split("")
-   
 
-    if unusable.include?(word.join) || word.size <= 1
-      word.join
-    elsif vowels.include?(word[0]) && word.size > 1
-      word.join + "ay"
-    elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2])
-      word = word.rotate.rotate.rotate << "ay"
-      word.join
-    elsif consonants.include?(word[0] && word[1])
-      word.rotate.rotate.join + "ay"
-    else
-      word.rotate.join + "ay"
-    end
-
- end
-
-  def to_pig_latin(words)
-    result = words.split(" ").map do |word|
-      piglatinize(word)
-    end
-    result.join(" ")
+  def piglatinize(thing)
+    pig(thing)
   end
 
+  def to_pig_latin(string)
+    pig(string)
+  end
 
-end
+  def pig(thing)
+    alpha = ('a'..'z').to_a + ('A'..'Z').to_a
+    vowels = %w[a e i o u] + %w[A E I O U]
+    consonants = alpha - vowels
+
+    showme = []
+      input = thing.split(' ') 
+        input.each do |word|
+            if word.length < 2
+              showme << word + "way" 
+            elsif vowels.include?(word[0])
+              showme <<  word + "way"
+            elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2])
+              showme <<  word[3..-1] + word[0..2] + 'ay'
+            elsif consonants.include?(word[0]) && consonants.include?(word[1])
+              showme <<  word[2..-1] + word[0..1] + 'ay'
+            elsif consonants.include?(word[0])
+              showme <<  word[1..-1] + word[0] + 'ay'
+            else 
+              showme <<  word + '?'
+            end
+        end 
+    showme.join(', ').gsub(/,/, '')
+  end
+
+end 
