@@ -1,0 +1,14 @@
+
+[1mFrom:[0m /mnt/c/Users/SBord/sinatra-mvc-lab-onl01-seng-pt-052620/app.rb @ line 17 self.GET /piglatinized:
+
+    [1;34m12[0m:     
+    [1;34m13[0m:         redirect [31m[1;31m"[0m[31m/piglatinized[1;31m"[0m[31m[0m
+    [1;34m14[0m:     [32mend[0m
+    [1;34m15[0m: 
+    [1;34m16[0m:     get [31m[1;31m"[0m[31m/piglatinized[1;31m"[0m[31m[0m [32mdo[0m
+ => [1;34m17[0m:         binding.pry
+    [1;34m18[0m:         erb [33m:piglatin_word[0m
+    [1;34m19[0m: 
+    [1;34m20[0m:     [32mend[0m
+    [1;34m21[0m: [32mend[0m
+
